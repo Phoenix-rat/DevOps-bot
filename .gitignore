@@ -1,0 +1,16 @@
+# Node modules
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Environment variables
+.env
+
+# Bot specific data files
+stats_history.json
+stats_config.json
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
