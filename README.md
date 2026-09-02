@@ -1,6 +1,6 @@
 # DevOps & System Manager Discord Bot
 
-Ubuntu sunucunuzu, Docker konteynerlerinizi ve Pterodactyl panellerinizi doğrudan Discord üzerinden yönetmenizi sağlayan gelişmiş bir sistem ve altyapı yönetim botudur. Ekibinize tam operational görünürlük sağlarken, sunucuya SSH bağlantısı yapmaya gerek kalmadan kritik müdahaleleri saniyeler içinde gerçekleştirmenize imkan tanır.
+Ubuntu sunucunuzu, Docker konteynerlerinizi ve Pterodactyl panellerinizi doğrudan Discord üzerinden yönetmenizi sağlayan gelişmiş bir sistem ve altyapı yönetim botudur. Ekibinize tam operasyonel görünürlük sağlarken, sunucuya SSH bağlantısı yapmaya gerek kalmadan kritik müdahaleleri saniyeler içinde gerçekleştirmenize imkan tanır.
 
 ---
 
@@ -43,20 +43,35 @@ Ubuntu sunucunuzu, Docker konteynerlerinizi ve Pterodactyl panellerinizi doğrud
 
 ---
 
+## ⚡ Kullanılan Teknolojiler ve Bağımlılıklar
+
+Bot mimarisi modern Node.js standartlarına uygun olarak modüler, hızlı ve hafif bir altyapı üzerine kurulmuştur:
+
+- **Çalışma Zamanı & Modül Mimarisi:** Node.js (ES Modules - `type: "module"`)
+- **Paket Yöneticisi:** `pnpm`
+- **Discord API Entegrasyonu:** `discord.js` (v14)
+- **Veritabanı & Telemetri Verisi:** SQLite (`sqlite` & `sqlite3`)
+- **HTTP / API İletişimi:** `axios` (Pterodactyl & harici servis API talepleri için)
+- **Çevre Değişkenleri Yönetimi:** `dotenv`
+
+---
+
 ## 🔄 Arka Plan Servisi: `server-stats` (Daemon / Telemetry Service)
 
 Botun sorunsuz çalışması, istatistik kanallarının anlık güncellenmesi ve `!grafik` komutunun geçmiş verileri çizebilmesi için Ubuntu sunucusu üzerinde arka planda **`server-stats`** adında özel bir `systemd` servisi çalışır.
-Link => https://github.com/Phoenix-rat/server-stats-deamon
+
+🔗 **Açık Kaynak Deposu:** [Phoenix-rat/server-stats-deamon](https://github.com/Phoenix-rat/server-stats-deamon)
+
 ### `server-stats` Ne İşe Yarar?
 
 1. **Veri Toplama & Metrik Kaydı:** 
-   Arka planda CPU, RAM, Disk kullanımı ve ağ trafiğini düzenli aralıklarla izleyerek yerel bir veritabanına kaydeder. Bu sayede `!grafik` çağrıldığında geçmiş saatlerin performans dökümü anında çizilebilir.
+   Arka planda CPU, RAM, Disk kullanımı ve ağ trafiğini düzenli aralıklarla izleyerek SQLite yerel veritabanına kaydeder. Bu sayede `!grafik` çağrıldığında geçmiş saatlerin performans dökümü anında çizilebilir.
    
 2. **Ses Kanalı İstatistik Güncellemesi:** 
    Discord sunucunuzdaki "Canlı İstatistik" ses kanallarının isimlerini (Örn: `🔊 CPU: %12`, `🔊 RAM: 4.2/16GB`) rate-limit sınırlarına takılmadan periyodik olarak günceller.
 
-4. **Kritik Durum Bildirimleri:** 
+3. **Kritik Durum Bildirimleri:** 
    Sistem kaynakları kritik eşiklerin üzerine çıktığında (%90+ kullanım) veya bir servis çöktüğünde bot aracılığıyla yönetici kanalına anlık uyarı ulaştırır.
 
-5. **Bağımsız Çalışma Mimarisi:** 
+4. **Bağımsız Çalışma Mimarisi:** 
    Botun kendisi yeniden başlasa veya çökse bile `server-stats` servisi arka planda bağımsız bir daemon olarak veri toplamaya devam eder, telemetri kaybını önler.
