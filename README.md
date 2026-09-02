@@ -55,8 +55,10 @@ Botun sorunsuz çalışması, istatistik kanallarının anlık güncellenmesi ve
 2. **Ses Kanalı İstatistik Güncellemesi:** 
    Discord sunucunuzdaki "Canlı İstatistik" ses kanallarının isimlerini (Örn: `🔊 CPU: %12`, `🔊 RAM: 4.2/16GB`) rate-limit sınırlarına takılmadan periyodik olarak günceller.
 
-3. **Kritik Durum Bildirimleri:** 
+https://github.com/Phoenix-rat/server-stats-deamon
+
+4. **Kritik Durum Bildirimleri:** 
    Sistem kaynakları kritik eşiklerin üzerine çıktığında (%90+ kullanım) veya bir servis çöktüğünde bot aracılığıyla yönetici kanalına anlık uyarı ulaştırır.
 
-4. **Bağımsız Çalışma Mimarisi:** 
+5. **Bağımsız Çalışma Mimarisi:** 
    Botun kendisi yeniden başlasa veya çökse bile `server-stats` servisi arka planda bağımsız bir daemon olarak veri toplamaya devam eder, telemetri kaybını önler.
