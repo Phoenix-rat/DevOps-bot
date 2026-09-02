@@ -46,7 +46,7 @@ Ubuntu sunucunuzu, Docker konteynerlerinizi ve Pterodactyl panellerinizi doğrud
 ## 🔄 Arka Plan Servisi: `server-stats` (Daemon / Telemetry Service)
 
 Botun sorunsuz çalışması, istatistik kanallarının anlık güncellenmesi ve `!grafik` komutunun geçmiş verileri çizebilmesi için Ubuntu sunucusu üzerinde arka planda **`server-stats`** adında özel bir `systemd` servisi çalışır.
-
+Link => https://github.com/Phoenix-rat/server-stats-deamon
 ### `server-stats` Ne İşe Yarar?
 
 1. **Veri Toplama & Metrik Kaydı:** 
@@ -54,8 +54,6 @@ Botun sorunsuz çalışması, istatistik kanallarının anlık güncellenmesi ve
    
 2. **Ses Kanalı İstatistik Güncellemesi:** 
    Discord sunucunuzdaki "Canlı İstatistik" ses kanallarının isimlerini (Örn: `🔊 CPU: %12`, `🔊 RAM: 4.2/16GB`) rate-limit sınırlarına takılmadan periyodik olarak günceller.
-
-https://github.com/Phoenix-rat/server-stats-deamon
 
 4. **Kritik Durum Bildirimleri:** 
    Sistem kaynakları kritik eşiklerin üzerine çıktığında (%90+ kullanım) veya bir servis çöktüğünde bot aracılığıyla yönetici kanalına anlık uyarı ulaştırır.
